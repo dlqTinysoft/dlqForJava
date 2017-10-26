@@ -2,6 +2,7 @@ package hpu.edu.cn;
 
 /**
  * Created by 董乐强 on 2017/10/26.
+ * 循环队列实现
  */
 public class CircularQueue<T> {
     //队列中元素个数
