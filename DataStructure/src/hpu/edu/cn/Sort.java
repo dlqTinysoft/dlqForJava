@@ -6,12 +6,42 @@ package hpu.edu.cn;
  */
 public class Sort {
 
-
-    public Object [] mergerSort(Object [] datas){
+    //归并排序
+    public Object [] mergerSort(int[] datas){
 
 
         return null;
     }
+
+    //归并排序的合并操作
+    public int [] merge(int [] datas,int low,int mid,int hight){
+         int left = low;
+         int right = mid+1;
+         int [] newArray = new int[hight-low+1];
+         while(left<=mid && right<=hight){
+
+             if(datas[left]<datas[right]) {
+                newArray[low++]=datas[left];
+                 left++;
+             }
+             else{
+                 newArray[low++]=datas[right];
+                 right++;
+             }
+         }
+
+         while(left<=mid){
+             newArray[low++]=datas[left];
+             left++;
+         }
+
+         while(right<=hight){
+             newArray[low++]=datas[right];
+             right++;
+         }
+         return newArray;
+    }
+
     //快速排序
     public int [] repaidSort(int [] datas){
         int i = 0;
