@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+
+<head>
+    <title>Destroydrop &raquo; Javascripts &raquo; Tree</title>
+
+    <link rel="StyleSheet" href="dtree.css" type="text/css"/>
+    <script type="text/javascript" src="dtree.js"></script>
+
+</head>
+
+<body>
+
+<h1><a href="/">Destroydrop</a> &raquo; <a href="/javascripts/">Javascripts</a> &raquo; <a href="/javascripts/tree/">Tree</a>
+</h1>
+
+<h2>Example</h2>
+
+<div class="dtree">
+    <TEXTAREA NAME="" ROWS="10" COLS="80" id="test"></TEXTAREA>
+    <p><a href="javascript: d.openAll();">open all</a> | <a href="javascript: d.closeAll();">close all</a></p>
+    <script language="javascript">
+        d = new dTree('d', '.', 'testForm');
+        d.add('0', '-1', '����');
+        d.add('0401', '0', '�����г���');
+        d.add('040101', '0401', '��֤���ʽ����', 'javascript:gotoUrl("blockcode=040101&blocktype=6");');
+        d.add('040102', '0401', '��֤���ʽ����', 'javascript:gotoUrl("blockcode=040102&blocktype=6");');
+        d.add('040103', '0401', 'ȫ�����ʽ����', 'javascript:gotoUrl("blockcode=040103&blocktype=6");');
+        d.add('040104', '0401', '����ʽ����', 'javascript:gotoUrl("blockcode=040104&blocktype=6");');
+        d.add('040105', '0401', '����ʽ���𣨷ǻ��ң�', 'javascript:gotoUrl("blockcode=040105&blocktype=6");');
+        d.add('040106', '0401', '�����г�����', 'javascript:gotoUrl("blockcode=040106&blocktype=6");');
+        d.add('040107', '0401', 'ȫ������', 'javascript:gotoUrl("blockcode=040107&blocktype=6");');
+        d.add('040108', '0401', 'ȫ�����𣨷ǻ��ң�', 'javascript:gotoUrl("blockcode=040108&blocktype=6");');
+        d.add('040109', '0401', 'LOF����', 'javascript:gotoUrl("blockcode=040109&blocktype=6");');
+        d.add('040110', '0401', 'ETF����', 'javascript:gotoUrl("blockcode=040110&blocktype=6");');
+        d.add('040111', '0401', '�ѷ�ת������', 'javascript:gotoUrl("blockcode=040111&blocktype=6");');
+        d.add('040112', '0401', '��ժ�ƻ���', 'javascript:gotoUrl("blockcode=040112&blocktype=6");');
+        d.add('0402', '0', 'Ͷ��������');
+        d.add('040201', '0402', '��Ʊ�ͻ���', 'javascript:gotoUrl("blockcode=040201&blocktype=6");');
+        d.add('040202', '0402', 'ծȯ�ͻ���', 'javascript:gotoUrl("blockcode=040202&blocktype=6");');
+        d.add('040203', '0402', '����ͻ���', 'javascript:gotoUrl("blockcode=040203&blocktype=6");');
+        d.add('040204', '0402', '�����ͻ���', 'javascript:gotoUrl("blockcode=040204&blocktype=6");');
+        d.add('0403', '0', 'Ͷ�ʷ����');
+        d.add('040301', '0403', '�ɳ��ͻ���', 'javascript:gotoUrl("blockcode=040301&blocktype=6");');
+        d.add('040302', '0403', '�����ͣ���ֵ�ͣ�����', 'javascript:gotoUrl("blockcode=040302&blocktype=6");');
+        d.add('040303', '0403', 'ƽ���ͻ���', 'javascript:gotoUrl("blockcode=040303&blocktype=6");');
+        d.add('040304', '0403', 'ָ���ͻ���', 'javascript:gotoUrl("blockcode=040304&blocktype=6");');
+        d.add('040305', '0403', '�����ͻ���', 'javascript:gotoUrl("blockcode=040305&blocktype=6");');
+        d.add('040306', '0403', '��ҵ�ͻ���', 'javascript:gotoUrl("blockcode=040306&blocktype=6");');
+        d.add('0404', '0', '����˾');
+        d.add('040400000001', '0404', '��ʱ����������޹�˾', 'javascript:gotoUrl("blockcode=040400000001&blocktype=6");');
+        d.add('040400000002', '0404', '��������������˾', 'javascript:gotoUrl("blockcode=040400000002&blocktype=6");');
+        d.add('040400000003', '0404', '��������������޹�˾', 'javascript:gotoUrl("blockcode=040400000003&blocktype=6");');
+        d.add('040400000004', '0404', '��ɻ���������޹�˾', 'javascript:gotoUrl("blockcode=040400000004&blocktype=6");');
+        d.add('040400000007', '0404', '�Ϸ�����������޹�˾', 'javascript:gotoUrl("blockcode=040400000007&blocktype=6");');
+        d.add('040400000008', '0404', '�㶫��������Ͷ�ʹ�˾����', 'javascript:gotoUrl("blockcode=040400000008&blocktype=6");');
+        d.add('040400000009', '0404', '�������֤ȯ�ɷ����޹�˾', 'javascript:gotoUrl("blockcode=040400000009&blocktype=6");');
+        d.add('040400000010', '0404', '��̩����������޹�˾', 'javascript:gotoUrl("blockcode=040400000010&blocktype=6");');
+        d.add('040400000011', '0404', '��������ɽ����������޹�˾', 'javascript:gotoUrl("blockcode=040400000011&blocktype=6");');
+        d.add('040400000013', '0404', '����Ͷ�ʻ������˾', 'javascript:gotoUrl("blockcode=040400000013&blocktype=6");');
+        d.add('040400000014', '0404', '�麣��ŸͶ�ʻ���', 'javascript:gotoUrl("blockcode=040400000014&blocktype=6");');
+        d.add('040400000015', '0404', '��ʵ����������޹�˾', 'javascript:gotoUrl("blockcode=040400000015&blocktype=6");');
+        d.add('040400000016', '0404', '�㶫��չ���л���', 'javascript:gotoUrl("blockcode=040400000016&blocktype=6");');
+        d.add('040400000017', '0404', '�㷢֤ȯ�ɷ����޹�˾', 'javascript:gotoUrl("blockcode=040400000017&blocktype=6");');
+        d.add('040400000018', '0404', '��������������޹�˾', 'javascript:gotoUrl("blockcode=040400000018&blocktype=6");');
+        d.add('040400000019', '0404', '�㶫ʡ�Ϸ����ڷ����ܹ�˾����', 'javascript:gotoUrl("blockcode=040400000019&blocktype=6");');
+        d.add('040400000020', '0404', '�㶫֤ȯ�ɷ����޹�˾', 'javascript:gotoUrl("blockcode=040400000020&blocktype=6");');
+        d.add('040400000021', '0404', '��֤ͨȯ���޹�˾�����ֹ�˾�������', 'javascript:gotoUrl("blockcode=040400000021&blocktype=6");');
+        d.add('040400000022', '0404', '��������������޹�˾', 'javascript:gotoUrl("blockcode=040400000022&blocktype=6");');
+        d.add('040400000023', '0404', '����ʡ֤ȯ��˾�������', 'javascript:gotoUrl("blockcode=040400000023&blocktype=6");');
+        d.add('040400000024', '0404', '��������֤ȯ��˾�������', 'javascript:gotoUrl("blockcode=040400000024&blocktype=6");');
+        d.add('040400000025', '0404', '�㶫��������Ͷ�ʹ�˾Ͷ�ʻ���', 'javascript:gotoUrl("blockcode=040400000025&blocktype=6");');
+        d.add('040400000026', '0404', '��ʢ����������޹�˾', 'javascript:gotoUrl("blockcode=040400000026&blocktype=6");');
+        d.add('040400000027', '0404', '���Ļ���������޹�˾', 'javascript:gotoUrl("blockcode=040400000027&blocktype=6");');
+        d.add('040400000028', '0404', '����ʡ֤ȯ��˾', 'javascript:gotoUrl("blockcode=040400000028&blocktype=6");');
+        d.add('040400000030', '0404', '�Ͳ�Ͷ�ʻ������˾', 'javascript:gotoUrl("blockcode=040400000030&blocktype=6");');
+        d.add('040400000031', '0404', '�й����������Ϻ����еڶ�Ӫҵ��', 'javascript:gotoUrl("blockcode=040400000031&blocktype=6");');
+        d.add('040400000033', '0404', '����������Ͷ�ʹ�˾�������', 'javascript:gotoUrl("blockcode=040400000033&blocktype=6");');
+        d.add('040400000061', '0404', '�й�����������ͷ�к���֧��', 'javascript:gotoUrl("blockcode=040400000061&blocktype=6");');
+        d.add('040400000062', '0404', '���ڰ뵺Ͷ�ʻ���˾', 'javascript:gotoUrl("blockcode=040400000062&blocktype=6");');
+        d.add('040400000111', '0404', '��̩����֤ȯ�ɷ����޹�˾', 'javascript:gotoUrl("blockcode=040400000111&blocktype=6");');
+        d.add('040400000135', '0404', '�й�������������������Ͷ�ʹɷ����޹�˾', 'javascript:gotoUrl("blockcode=040400000135&blocktype=6");');
+        d.add('040400000138', '0404', '�й�ũҵ���������з��л������', 'javascript:gotoUrl("blockcode=040400000138&blocktype=6");');
+        d.add('040400000139', '0404', '�й�������������������֧������Ͷ�ʻ������', 'javascript:gotoUrl("blockcode=040400000139&blocktype=6");');
+        d.add('040400001423', '0404', '��ͨ���к��Ϸ���', 'javascript:gotoUrl("blockcode=040400001423&blocktype=6");');
+        d.add('040400052134', '0404', '��ͨ����������޹�˾', 'javascript:gotoUrl("blockcode=040400052134&blocktype=6");');
+        d.add('040400053162', '0404', '�׷������������޹�˾', 'javascript:gotoUrl("blockcode=040400053162&blocktype=6");');
+        d.add('040400055027', '0404', '��������������޹�˾', 'javascript:gotoUrl("blockcode=040400055027&blocktype=6");');
+        d.add('040400062164', '0404', '��ӯ����������޹�˾', 'javascript:gotoUrl("blockcode=040400062164&blocktype=6");');
+        d.add('040400064608', '0404', '���ǻ���������޹�˾', 'javascript:gotoUrl("blockcode=040400064608&blocktype=6");');
+        d.add('040400065772', '0404', '���ӻ���������޹�˾', 'javascript:gotoUrl("blockcode=040400065772&blocktype=6");');
+        d.add('040400065906', '0404', '��Ͷ��������������޹�˾', 'javascript:gotoUrl("blockcode=040400065906&blocktype=6");');
+        d.add('040400069602', '0404', '�Ϻ���������Ͷ�����޹�˾', 'javascript:gotoUrl("blockcode=040400069602&blocktype=6");');
+        d.add('040400073182', '0404', '��һ���������޹�˾', 'javascript:gotoUrl("blockcode=040400073182&blocktype=6");');
+        d.add('040400074823', '0404', '���̻���������޹�˾', 'javascript:gotoUrl("blockcode=040400074823&blocktype=6");');
+        d.add('040400074843', '0404', '̩���������������޹�˾', 'javascript:gotoUrl("blockcode=040400074843&blocktype=6");');
+        d.add('040400075137', '0404', '��ӥ����������޹�˾', 'javascript:gotoUrl("blockcode=040400075137&blocktype=6");');
+        d.add('040400075801', '0404', '������ҵ����������޹�˾', 'javascript:gotoUrl("blockcode=040400075801&blocktype=6");');
+        d.add('040400077211', '0404', '����������������޹�˾', 'javascript:gotoUrl("blockcode=040400077211&blocktype=6");');
+        d.add('040400077900', '0404', '����ͨ����������޹�˾', 'javascript:gotoUrl("blockcode=040400077900&blocktype=6");');
+        d.add('040400079057', '0404', '��˳���ǻ���������޹�˾', 'javascript:gotoUrl("blockcode=040400079057&blocktype=6");');
+        d.add('040400079708', '0404', '�㷢����������޹�˾', 'javascript:gotoUrl("blockcode=040400079708&blocktype=6");');
+        d.add('040400081892', '0404', '̩�Ż���������޹�˾', 'javascript:gotoUrl("blockcode=040400081892&blocktype=6");');
+        d.add('040400083290', '0404', '���Ż���������޹�˾', 'javascript:gotoUrl("blockcode=040400083290&blocktype=6");');
+        d.add('040400083474', '0404', '���Ż���������޹�˾', 'javascript:gotoUrl("blockcode=040400083474&blocktype=6");');
+        d.add('040400083700', '0404', '�������������޹�˾', 'javascript:gotoUrl("blockcode=040400083700&blocktype=6");');
+        d.add('040400083833', '0404', '����������������޹�˾', 'javascript:gotoUrl("blockcode=040400083833&blocktype=6");');
+        d.add('040400084011', '0404', '��ҵ����������޹�˾', 'javascript:gotoUrl("blockcode=040400084011&blocktype=6");');
+        d.add('040400084136', '0404', 'ŵ������������޹�˾', 'javascript:gotoUrl("blockcode=040400084136&blocktype=6");');
+        d.add('040400084387', '0404', '���λ���������޹�˾', 'javascript:gotoUrl("blockcode=040400084387&blocktype=6");');
+        d.add('040400086048', '0404', '��󱣵��Ż���������޹�˾', 'javascript:gotoUrl("blockcode=040400086048&blocktype=6");');
+        d.add('040400086315', '0404', '��ͶĦ������������������޹�˾', 'javascript:gotoUrl("blockcode=040400086315&blocktype=6");');
+        d.add('040400086437', '0404', '�к�����������޹�˾', 'javascript:gotoUrl("blockcode=040400086437&blocktype=6");');
+        d.add('040400086839', '0404', '�������ʻ���������޹�˾', 'javascript:gotoUrl("blockcode=040400086839&blocktype=6");');
+        d.add('040400086979', '0404', '������������������ι�˾', 'javascript:gotoUrl("blockcode=040400086979&blocktype=6");');
+        d.add('040400089171', '0404', '�����ͻ���������޹�˾', 'javascript:gotoUrl("blockcode=040400089171&blocktype=6");');
+        d.add('040400089251', '0404', '��������������޹�˾', 'javascript:gotoUrl("blockcode=040400089251&blocktype=6");');
+        d.add('040400089255', '0404', '������������޹�˾', 'javascript:gotoUrl("blockcode=040400089255&blocktype=6");');
+        d.add('040400089257', '0404', '�������������޹�˾', 'javascript:gotoUrl("blockcode=040400089257&blocktype=6");');
+        d.add('040400089262', '0404', '��������������޹�˾', 'javascript:gotoUrl("blockcode=040400089262&blocktype=6");');
+        d.add('040400089990', '0404', '�Ѱ̩����������޹�˾', 'javascript:gotoUrl("blockcode=040400089990&blocktype=6");');
+        d.add('040400090204', '0404', '�����������ֻ���������޹�˾', 'javascript:gotoUrl("blockcode=040400090204&blocktype=6");');
+        d.add('040400090471', '0404', '����ʩ�޵»���������޹�˾', 'javascript:gotoUrl("blockcode=040400090471&blocktype=6");');
+        d.add('040400090517', '0404', '�������Ż���������޹�˾', 'javascript:gotoUrl("blockcode=040400090517&blocktype=6");');
+        d.add('040400200471', '0404', '�ųϻ������˾', 'javascript:gotoUrl("blockcode=040400200471&blocktype=6");');
+        d.add('040400200630', '0404', '���Ż���������޹�˾', 'javascript:gotoUrl("blockcode=040400200630&blocktype=6");');
+        d.add('040400206677', '0404', '�����Ż���������޹�˾', 'javascript:gotoUrl("blockcode=040400206677&blocktype=6");');
+        d.add('040400215348', '0404', '�������������޹�˾', 'javascript:gotoUrl("blockcode=040400215348&blocktype=6");');
+        d.add('040400216478', '0404', '���ʴ�ҵ����������޹�˾', 'javascript:gotoUrl("blockcode=040400216478&blocktype=6");');
+        d.add('040403133598', '0404', '��ŷ����������޹�˾  ', 'javascript:gotoUrl("blockcode=040403133598&blocktype=6");');
+        d.add('040403135981', '0404', '�Ŵ��������������޹�˾', 'javascript:gotoUrl("blockcode=040403135981&blocktype=6");');
+        d.add('040403139945', '0404', 'ŵ�»���������޹�˾', 'javascript:gotoUrl("blockcode=040403139945&blocktype=6");');
+        d.add('040403140700', '0404', '���̻���������޹�˾', 'javascript:gotoUrl("blockcode=040403140700&blocktype=6");');
+        d.add('0405', '0', '�й�����');
+        d.add('040500000035', '0405', '�й�ũҵ����', 'javascript:gotoUrl("blockcode=040500000035&blocktype=6");');
+        d.add('040500000036', '0405', '��ͨ����', 'javascript:gotoUrl("blockcode=040500000036&blocktype=6");');
+        d.add('040500000037', '0405', '�й��������йɷ����޹�˾', 'javascript:gotoUrl("blockcode=040500000037&blocktype=6");');
+        d.add('040500000047', '0405', '�й��������йɷ����޹�˾', 'javascript:gotoUrl("blockcode=040500000047&blocktype=6");');
+        d.add('040500000053', '0405', '�й����йɷ����޹�˾', 'javascript:gotoUrl("blockcode=040500000053&blocktype=6");');
+        d.add('040500008577', '0405', '�Ϻ��ֶ���չ���йɷ����޹�˾', 'javascript:gotoUrl("blockcode=040500008577&blocktype=6");');
+        d.add('040500011967', '0405', '�й��������', 'javascript:gotoUrl("blockcode=040500011967&blocktype=6");');
+        d.add('040500046321', '0405', '��������', 'javascript:gotoUrl("blockcode=040500046321&blocktype=6");');
+        d.add('040500074499', '0405', '�й��������йɷ����޹�˾', 'javascript:gotoUrl("blockcode=040500074499&blocktype=6");');
+        d.add('040500082542', '0405', '�������йɷ����޹�˾', 'javascript:gotoUrl("blockcode=040500082542&blocktype=6");');
+        d.add('040500084226', '0405', '��ҵ���йɷ����޹�˾', 'javascript:gotoUrl("blockcode=040500084226&blocktype=6");');
+        d.add('040500089958', '0405', '�������йɷ����޹�˾', 'javascript:gotoUrl("blockcode=040500089958&blocktype=6");');
+
+
+        document.write(d);
+
+    </script>
+
+    <SCRIPT LANGUAGE="JavaScript">
+        // document.write(d);
+    </SCRIPT>
+
+    <script type="text/javascript">
+
+        //				d..config.useCheckBox=true;
+
+        /*d.add(0,-1,'My example tree');
+         d.add(1,0,'Node 1');
+         d.add(2,0,'Node 2');
+         d.add(3,1,'Node 1.1');
+         d.add(4,0,'Node 3');
+         d.add(5,3,'Node 1.1.1');
+         d.add(8,1,'Node 1.2');
+         d.add(7,0,'My Pictures');
+         d.add(10,7,'The trip to Iceland');
+         d.add(11,7,'Mom\'s birthday');
+         */
+
+
+        //document.getElementById("dTreeCheckBox").action="";
+        //document.getElementById("dTreeCheckBox").submit();
+
+        function submitForm() {
+
+            //document.getElementById("dTreeCheckBox").action="";
+            //document.getElementById("dTreeCheckBox").submit();
+            //alert(document.getElementById("testForm"));
+            var ids = "";
+            var form = document.getElementById("testForm");
+            for (var i = 0; i < form.elements.length; i++) {
+                var element = form.elements[i];
+                if (element.name == "id" && element.type == 'checkbox') {
+                    if (element.checked == true) {
+                        //alert("id=" + element.id +"\r\n" + "name=" + element.name + "\r\n" + "value="+element.value);
+                        ids = ids + element.value + ",";
+                    }
+                }
+            }
+            alert("ids = " + ids);
+
+        }
+
+        //-->
+    </script>
+
+
+    <input type="button" value="�� ��" onClick="submitForm()"/>
+
+
+</div>
+
+<p><a href="mailto&#58;drop&#64;destroydrop&#46;com">&copy;2002-2003 Geir Landr&ouml;</a></p>
+
+
+</body>
+
+</html>

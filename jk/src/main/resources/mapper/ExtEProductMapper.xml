@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tinysoft.cn.domain.ExtEProduct" >
+
+        <resultMap id="ExtProductRM" type="com.tinysoft.cn.domain.ExtEProduct">
+            <id property="id" column="EXT_EPRODUCT_ID"/>
+            <result property="exportProductId" column="EXPORT_PRODUCT_ID"/>
+            <result property="factoryId" column="FACTORY_ID"/>
+            <result property="factoryName" column="FACTORY_NAME"/>		<!-- 这个column是数据库表的字段吗？？？ 它是sql查询的结果集中的字段名 -->
+            <result property="productImage" column="PRODUCT_IMAGE"/>
+            <result property="productNo" column="PRODUCT_NO"/>
+            <result property="productDesc" column="PRODUCT_DESC"/>
+            <result property="cnumber" column="CNUMBER"/>
+            <result property="packingUnit" column="PACKING_UNIT"/>
+            <result property="price" column="PRICE"/>
+            <result property="amount" column="AMOUNT"/>
+        </resultMap>
+
+    <!-- 从表新增，含带主表ID -->
+    <insert id="insert" parameterType="com.tinysoft.cn.domain.ExtEProduct">
+        insert into ext_eproduct_c
+        (EXT_EPRODUCT_ID,EXPORT_PRODUCT_ID,FACTORY_ID,PRODUCT_NO,PRODUCT_DESC,PACKING_UNIT,CNUMBER,PRICE,AMOUNT)
+        values
+        (#{id},#{exportProductId},#{factoryId},#{productNo},#{productDesc},#{packingUnit},#{cnumber},#{price},#{amount})
+    </insert>
+
+    <!-- 级联删除 -->
+    <delete id="deleteByExportId" parameterType="string">
+        delete from ext_eproduct_c
+        where EXPORT_PRODUCT_ID in
+        (
+        select export_product_id from export_product_c
+        where export_id=#{exportId}
+        )
+    </delete>
+</mapper>

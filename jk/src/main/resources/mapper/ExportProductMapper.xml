@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tinysoft.cn.domain.ExportProduct">
+
+     <resultMap id="ExtProductRM" type="com.tinysoft.cn.domain.ExportProduct">
+         <id property="id" column="EXPORT_PRODUCT_ID"/>
+         <result property="exportId" column="EXPORT_ID"/>
+
+         <result property="factoryId" column="FACTORY_ID"/>
+         <result property="factoryName" column="FACTORY_NAME"/>		<!-- 这个column是数据库表的字段吗？？？ 它是sql查询的结果集中的字段名 -->
+         <result property="productImage" column="PRODUCT_IMAGE"/>
+         <result property="productNo" column="PRODUCT_NO"/>
+         <result property="productDesc" column="PRODUCT_DESC"/>
+         <result property="cnumber" column="CNUMBER"/>
+         <result property="packingUnit" column="PACKING_UNIT"/>
+         <result property="boxNum" column="BOX_NUM"/>
+         <result property="price" column="PRICE"/>
+         <result property="amount" column="AMOUNT"/>
+
+         <result property="grossWeight" column="GROSS_WEIGHT"/>
+         <result property="netWeight" column="NET_WEIGHT"/>
+         <result property="sizeLength" column="SIZE_LENGTH"/>
+         <result property="sizeWidth" column="SIZE_WIDTH"/>
+         <result property="sizeHeight" column="SIZE_HEIGHT"/>
+         <result property="exPrice" column="EX_PRICE"/>
+         <result property="tax" column="TAX"/>
+         <result property="orderNo" column="ORDER_NO"></result>
+
+     </resultMap>
+     <!--查询某个保运单下的货物信息-->
+     <select id="find" parameterType="map" resultMap="ExtProductRM">
+            select * from export_product_c
+             where 1=1 <if test="exportId != null">and EXPORT_ID=#{exportId}</if>
+     </select>
+
+    <!--得到保运下的货物信息-->
+    <select id="get" parameterType="string" resultMap="ExtProductRM">
+        select * from export_product_c
+        where EXPORT_PRODUCT_ID=#{id}
+    </select>
+
+    <!--新增从表，必须携带主表的id-->
+    <insert id="insert" parameterType="com.tinysoft.cn.domain.ExportProduct">
+        insert into export_product_c
+		(EXPORT_PRODUCT_ID,EXPORT_ID,FACTORY_ID,FACTORY_NAME,
+		PRODUCT_NO,CNUMBER,PACKING_UNIT,BOX_NUM,PRICE,
+		GROSS_WEIGHT,NET_WEIGHT,SIZE_LENGTH,SIZE_WIDTH,SIZE_HEIGHT,EX_PRICE,TAX,ORDER_NO
+		)
+		values
+		(#{id},#{exportId},#{factoryId},#{factoryName},
+		#{productNo},#{cnumber},#{packingUnit},#{boxNum},#{price},
+		#{grossWeight},#{netWeight},#{sizeLength},#{sizeWidth},#{sizeHeight},#{exPrice},#{tax},#{orderNo}
+		)
+    </insert>
+
+    <!--从表的修改-->
+    <update id="update" parameterType="com.tinysoft.cn.domain.ExportProduct">
+        update export_product_c
+        <set>
+            <if test="factoryId!=null"> FACTORY_ID=#{factoryId},</if>
+            <if test="factoryName!=null"> FACTORY_NAME=#{factoryName},</if>
+
+            <if test="productImage!=null"> PRODUCT_IMAGE=#{productImage},</if>
+            <if test="productNo!=null"> PRODUCT_NO=#{productNo}, </if>
+            <if test="productDesc!=null"> PRODUCT_DESC=#{productDesc},</if>
+            <if test="cnumber!=null"> CNUMBER=#{cnumber}, </if>
+            <if test="packingUnit!=null"> PACKING_UNIT=#{packingUnit},</if>
+            <if test="boxNum!=null"> BOX_NUM=#{boxNum}, </if>
+            <if test="price!=null"> PRICE=#{price}, </if>
+            <if test="amount!=null"> AMOUNT=#{amount}, </if>
+
+            <if test="grossWeight!=null"> GROSS_WEIGHT=#{grossWeight}, </if>
+            <if test="netWeight!=null"> NET_WEIGHT=#{netWeight}, </if>
+            <if test="sizeLength!=null"> SIZE_LENGTH=#{sizeLength}, </if>
+            <if test="sizeWidth!=null"> SIZE_WIDTH=#{sizeWidth}, </if>
+            <if test="sizeHeight!=null"> SIZE_HEIGHT=#{sizeHeight}, </if>
+            <if test="exPrice!=null"> EX_PRICE=#{exPrice}, </if>
+            <if test="tax!=null"> TAX=#{tax}, </if>
+            <if test="orderNo!=null"> ORDER_NO=#{orderNo}, </if>
+        </set>
+        where EXPORT_PRODUCT_ID=#{id}
+    </update>
+
+    <!-- 级联删除 -->
+    <delete id="deleteByExportId" parameterType="string">
+        delete from export_product_c
+        where EXPORT_ID=#{exportId}
+    </delete>
+
+</mapper>

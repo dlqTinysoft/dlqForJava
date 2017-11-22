@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tinysoft.cn.domain.Factory">
+    <!-- resultMap映射 -->
+    <resultMap type="com.tinysoft.cn.domain.Factory" id="factoryRM">
+        <!-- 主键 -->
+        <id property="id" column="FACTORY_ID"/>
+        <!-- 一般属性 -->
+        <result property="fullName" column="FULL_NAME"/>
+        <result property="factoryName" column="FACTORY_NAME"/>
+        <result property="contacts" column="CONTACTS"/>
+        <result property="phone" column="PHONE"/>
+        <result property="mobile" column="MOBILE"/>
+        <result property="fax" column="FAX"/>
+        <result property="cnote" column="CNOTE"/>
+        <result property="inspector" column="INSPECTOR"/>
+        <result property="orderNo" column="ORDER_NO"/>
+        <result property="state" column="STATE"/>
+
+        <result property="createBy" column="CREATE_BY"/>
+        <result property="createDept" column="CREATE_DEPT"/>
+        <result property="createTime" column="CREATE_TIME"/>
+    </resultMap>
+
+    <!-- 查询 -->
+    <select id="find" parameterType="map" resultMap="factoryRM">
+		 select * from factory_c where 1=1 <if test="state !=null">and state=#{state}</if>
+	</select>
+
+    <select id="get" parameterType="string" resultMap="factoryRM">
+		select * from factory_c where factory_id=#{id}
+	</select>
+
+    <!--插入信息-->
+    <insert id="insert" parameterType="com.tinysoft.cn.domain.Factory">
+		insert into factory_c
+		(FACTORY_ID,
+		FULL_NAME,
+		FACTORY_NAME,
+		CONTACTS,
+		PHONE,
+		MOBILE,
+		FAX,
+		CNOTE,
+		INSPECTOR,
+		ORDER_NO,
+		STATE,
+		CREATE_BY,
+		CREATE_DEPT,
+		CREATE_TIME)
+		values
+		(	#{id},
+			#{fullName, jdbcType=VARCHAR},
+			#{factoryName, jdbcType=VARCHAR},
+			#{contacts, jdbcType=VARCHAR},
+			#{phone, jdbcType=VARCHAR},
+			#{mobile, jdbcType=VARCHAR},
+			#{fax, jdbcType=VARCHAR},
+			#{cnote, jdbcType=VARCHAR},
+			#{inspector, jdbcType=VARCHAR},
+			#{orderNo, jdbcType=INTEGER},
+			#{state, jdbcType=VARCHAR},
+			#{createBy, jdbcType=VARCHAR},
+			#{createDept, jdbcType=VARCHAR},
+			#{createTime, jdbcType=TIMESTAMP}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.tinysoft.cn.domain.Factory">
+        update factory_c
+        <set>
+            <if test="fullName != null">FULL_NAME=#{fullName,jdbcType=VARCHAR},</if>
+            <if test="factoryName != null">FACTORY_NAME=#{factoryName,jdbcType=VARCHAR},</if>
+            <if test="contacts != null">CONTACTS=#{contacts,jdbcType=VARCHAR},</if>
+            <if test="phone != null">PHONE=#{phone,jdbcType=VARCHAR},</if>
+            <if test="mobile != null">MOBILE=#{mobile,jdbcType=VARCHAR},</if>
+            <if test="fax != null">FAX=#{fax,jdbcType=VARCHAR},</if>
+            <if test="cnote!= null">CNOTE=#{cnote,jdbcType=VARCHAR},</if>
+            <if test="inspector != null">INSPECTOR=#{inspector,jdbcType=VARCHAR},</if>
+            <if test="orderNo != null">ORDER_NO=#{orderNo,jdbcType=INTEGER},</if>
+        </set>
+        where factory_id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="string">
+		delete from factory_c
+		where factory_id=#{id}
+	</delete>
+
+    <delete id="delete" parameterType="string">
+        delete from factory_c
+        where factory_id IN
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateState" parameterType="map">
+        update factory_c
+        set state=#{state}
+        where factory_id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
+
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tinysoft.cn.vo.OutProductPrintVO">
+       <resultMap id="OutProductPrintRM" type="com.tinysoft.cn.vo.OutProductPrintVO">
+              <result property="customName" column="CUSTOM_NAME"></result>
+              <result property="contractNo" column="CONTRACT_NO"></result>
+              <result property="deliveryPeriod" column="DELIVERY_PERIOD"></result>
+              <result property="shipTime" column="SHIP_TIME"></result>
+              <result property="tradeTerms" column="TRADE_TERMS"></result>
+              <result property="productNo" column="PRODUCT_NO"></result>
+              <result property="cnumber" column="CNUMBER"></result>
+              <result property="factoryName" column="FACTORY_NAME"></result>
+       </resultMap>
+
+
+    <select id="find" parameterType="string" resultMap="OutProductPrintRM">
+
+         select c.CUSTOM_NAME,c.CONTRACT_NO,to_char(c.DELIVERY_PERIOD,'yyyy-MM-dd') as DELIVERY_PERIOD ,
+                to_char(c.SHIP_TIME,'yyyy-MM-dd') as SHIP_TIME ,c.TRADE_TERMS,
+                cp.PRODUCT_NO, concat(cp.CNUMBER,cp.PACKING_UNIT) as CNUMBER,cp.FACTORY_NAME
+         from
+
+        (select CONTRACT_ID,CUSTOM_NAME,CONTRACT_NO,DELIVERY_PERIOD,SHIP_TIME,TRADE_TERMS from CONTRACT_C)  c
+
+        left join
+
+        (select CONTRACT_ID,PRODUCT_NO,CNUMBER,PACKING_UNIT,FACTORY_NAME from CONTRACT_PRODUCT_C)  cp
+
+        on c.CONTRACT_ID = cp.CONTRACT_ID
+
+        where to_char(c.SHIP_TIME,'yyyy-MM')=#{inputDate} or 1=1
+    </select>
+</mapper>

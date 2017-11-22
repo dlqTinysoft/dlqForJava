@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tinysoft.cn.domain.PackingList">
+    <resultMap id="packingListRM" type="com.tinysoft.cn.domain.PackingList">
+        <id property="id" column="PACKING_LIST_ID"></id>
+        <!--卖家-->
+        <result property="seller" column="SELLER"/>
+        <!--买家-->
+        <result property="buyer" column="BUYER"/>
+        <!--发票号-->
+        <result property="invoiceNo" column="INVOICE_NO"/>
+        <!--发票日期-->
+        <result property="invoiceDate" column="INVOICE_DATE"/>
+        <!--唛头-->
+        <result property="marks" column="MARKS"/>
+        <!--描述-->
+        <result property="descriptions" column="DESCRIPTIONS"/>
+        <!--这次装箱所包含的那几个报运单-->
+        <result property="exportIds" column="EXPORT_IDS"/>
+        <!--报运号-->
+        <result property="exportNos" column="EXPORT_NOS"/>
+        <!--状态-->
+        <result property="state" column="STATE"/>
+        <!--创建人-->
+        <result property="createBy" column="CREATE_BY"/>
+        <!--创建部门-->
+        <result property="createDept" column="CREATE_DEPT"/>
+        <!--创建时间-->
+        <result property="createTime" column="CREATE_TIME"/>
+    </resultMap>
+
+    <select id="find" parameterType="map" resultMap="packingListRM">
+        select * from packing_list_c
+        where 1=1
+    </select>
+
+    <select id="get" parameterType="string" resultMap="packingListRM">
+        select * from packing_list_c
+        where packing_list_id=#{pid}
+    </select>
+
+    <insert id="insert" parameterType="com.tinysoft.cn.domain.PackingList">
+        insert into packing_list_c
+        (PACKING_LIST_ID,SELLER,BUYER,INVOICE_NO,INVOICE_DATE,MARKS,DESCRIPTIONS,EXPORT_IDS,EXPORT_NOS,STATE,CREATE_BY,CREATE_DEPT,CREATE_TIME)
+        values
+        (
+        #{id},
+        #{seller, jdbcType=VARCHAR},
+        #{buyer, jdbcType=VARCHAR},
+        #{invoiceNo, jdbcType=VARCHAR},
+        #{invoiceDate, jdbcType=TIMESTAMP},
+        #{marks, jdbcType=VARCHAR},
+        #{descriptions, jdbcType=VARCHAR},
+        #{exportIds, jdbcType=VARCHAR},
+        #{exportNos, jdbcType=VARCHAR},
+        #{state, jdbcType=INTEGER},
+        #{createBy, jdbcType=VARCHAR},
+        #{createDept, jdbcType=VARCHAR},
+        #{createTime, jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.tinysoft.cn.domain.PackingList">
+        update packing_list_c
+        <set>
+            <if test="seller != null">SELLER=#{seller},</if>
+            <if test="buyer != null">BUYER=#{buyer},</if>
+            <if test="invoiceNo != null">INVOICE_NO=#{invoiceNo},</if>
+            <if test="invoiceDate != null">INVOICE_DATE=#{invoiceDate},</if>
+            <if test="marks != null">MARKS=#{marks},</if>
+            <if test="descriptions != null">DESCRIPTIONS=#{descriptions},</if>
+            <if test="exportIds != null">EXPORT_IDS=#{exportIds},</if>
+            <if test="exportNos != null">EXPORT_NOS=#{exportNos},</if>
+            <if test="state != null">STATE=#{state},</if>
+        </set>
+        where packing_list_id=#{id}
+    </update>
+
+
+    <!--更新状态-->
+    <update id="updateState" parameterType="map">
+        update packing_list_c set state=#{state}
+
+        where packing_list_id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+
+    </update>
+
+
+
+    <!-- 删除一条 -->
+    <delete id="deleteById" parameterType="string">
+        delete from packing_list_c
+        where packing_list_id=#{pid}
+    </delete>
+
+    <!-- 删除多条（一维字符串数组） -->
+    <delete id="delete" parameterType="string">
+        delete from packing_list_c
+        where packing_list_id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

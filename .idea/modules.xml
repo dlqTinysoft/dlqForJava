@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DataStructure/DataStructure.iml" filepath="$PROJECT_DIR$/DataStructure/DataStructure.iml" />
+      <module fileurl="file://F:\code\testgit\dlqForJava\springboot\DataStructure\DataStructure.iml" filepath="F:\code\testgit\dlqForJava\springboot\DataStructure\DataStructure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Test/Test.iml" filepath="$PROJECT_DIR$/Test/Test.iml" />
       <module fileurl="file://$PROJECT_DIR$/dlqForJava.iml" filepath="$PROJECT_DIR$/dlqForJava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jk/jk.iml" filepath="$PROJECT_DIR$/jk/jk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jk/springboot.iml" filepath="$PROJECT_DIR$/jk/springboot.iml" />
     </modules>
   </component>
 </project>

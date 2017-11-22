@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tinysoft.cn.domain.Contract">
+   <resultMap id="ContractRM" type="com.tinysoft.cn.domain.Contract">
+       <!--主键配置-->
+       <id column="CONTRACT_ID" property="id"></id>
+
+       <!--一般属性的配置-->
+       <!--合同中货物的总数量-->
+       <!--cpnum这个字段，在数据库表中是没有的，从这一点上可以看出mybatis是面向结果集的-->
+       <result property="cpnum" column="cpnum"></result>
+       <result property="extnum" column="extnum"></result>
+       <!-- 虚拟字段 -->
+       <!--收购方，就是杰信这个公司-->
+       <result property="offeror" column="OFFEROR"/>
+       <!--合同号，与生产厂家签订的合同号-->
+       <result property="contractNo" column="CONTRACT_NO"/>
+       <!--与工厂签订合同的时间-->
+       <result property="signingDate" column="SIGNING_DATE"/>
+       <!--制单人，这个合同是谁制定的-->
+       <result property="inputBy" column="INPUT_BY"/>
+       <!--审单人-->
+       <result property="checkBy" column="CHECK_BY"/>
+       <!--验货员，这个是厂家的验货员or杰信驻场家代表，应该是杰信驻场家的验货员才可以的，是杰信驻生产厂家的验货员-->
+       <result property="inspector" column="INSPECTOR"/>
+       <!--总金额，只的是这个合同的总金额，包括货物和附件一起的总金额-->
+       <result property="totalAmount" column="TOTAL_AMOUNT"/>
+       <!--重要程度-->
+       <result property="importNum" column="IMPORT_NUM"/>
+       <!--对于货物的一些要求-->
+       <result property="crequest" column="CREQUEST"/>
+       <!--顾客的名称，这个合同不是与顾客签订的，这个合同包含了一个用户所需要的货物，这些货物有多个厂家生产,所以这个合同可以千多个-->
+       <result property="customName" column="CUSTOM_NAME"/>
+       <!--交货期限-->
+       <result property="deliveryPeriod" column="DELIVERY_PERIOD"/>
+       <!--船期，船期一定大于交货期限，要不然，船来了，不能够交货，就不好了-->
+       <result property="shipTime" column="SHIP_TIME"/>
+       <!--贸易条款， 有FOB T/T-->
+       <result property="tradeTerms" column="TRADE_TERMS"/>
+       <!--说明，对于货物的一些说明-->
+       <result property="remark" column="REMARK"/>
+       <!--打印板式-->
+       <result property="printStyle" column="PRINT_STYLE"/>
+       <!--归档前状态，在后续的业务会设计到这个问题-->
+       <result property="oldState" column="OLD_STATE"/>
+       <!--状态，这个合同是草稿，还是已提交，如果提交则可以打印合同，与厂家进行签订合同，然后也可以进行报运，就是后续的业务-->
+       <result property="state" column="STATE"/>
+       <!--走货状态，在后续的业务中会使用到-->
+       <result property="outState" column="OUT_STATE"/>
+       <!--创建人-->
+       <result property="createBy" column="CREATE_BY"/>
+       <!--创建部门-->
+       <result property="createDept" column="CREATE_DEPT"/>
+       <!--创建日期-->
+       <result property="createTime" column="CREATE_TIME"/>
+   </resultMap>
+    <!--Mybatis是面向结果集的-->
+   <resultMap id="ContractVORM" type="com.tinysoft.cn.vo.ContractVO" extends="ContractRM">
+
+      <!--合同和货物一对多-->
+       <collection property="contractProducts" ofType="com.tinysoft.cn.vo.ContractProductVO">
+           <!--主键-->
+           <id property="id" column="contract_product_id"></id>
+           <!--货物编号-->
+           <result property="productNo" column="PRODUCT_NO"/>
+           <!--货物图片-->
+           <result property="productImage" column="PRODUCT_IMAGE"/>
+           <!--货物描述-->
+           <result property="productDesc" column="PRODUCT_DESC"/>
+           <!--数量-->
+           <result property="cnumber" column="CNUMBER"/>
+           <!--实际出货量-->
+           <result property="outNumber" column="OUT_NUMBER"/>
+           <!--装率-->
+           <result property="loadingRate" column="LOADING_RATE"/>
+           <!--箱数-->
+           <result property="boxNum" column="BOX_NUM"/>
+           <!--包装单位-->
+           <result property="packingUnit" column="PACKING_UNIT"/>
+           <!--单价-->
+           <result property="price" column="PRICE"/>
+           <!--总金额-->
+           <result property="amount" column="AMOUNT"/>
+           <!--是否出货完毕-->
+           <result property="finished" column="FINISHED"/>
+           <!--附件-->
+           <result property="exts" column="EXTS"/>
+           <!--排序号-->
+           <result property="orderNo" column="ORDER_NO"/>
+
+           <!--货物和生产厂家多对一-->
+           <association property="factory" javaType="com.tinysoft.cn.domain.Factory">
+               <id property="id" column="FACTORY_ID"/>
+               <result property="fullName" column="FULL_NAME"/>
+               <result property="factoryName" column="FACTORY_NAME"/>
+               <result property="contacts" column="CONTACTS"/>
+           </association>
+
+           <!--货物和附件是一对多-->
+           <collection property="extProducts" ofType="com.tinysoft.cn.vo.ExtProductVO">
+               <id property="id" column="EXT_CPRODUCT_ID"/>
+               <!--附件类型-->
+               <result property="ctype" column="CTYPE"/>
+               <!--货物号,就是附件编号，附件也是货物-->
+               <result property="productNo" column="EXT_PRODUCT_NO"/>
+               <!--附件图片-->
+               <result property="productImage" column="EXT_PRODUCT_IMAGE"/>
+               <!--附件描述-->
+               <result property="productDesc" column="EXT_PRODUCT_DESC"/>
+               <!--数量-->
+               <result property="cnumber" column="EXT_CNUMBER"/>
+               <!--包装单位-->
+               <result property="packingUnit" column="EXT_PACKING_UNIT"/>
+               <!--价格-->
+               <result property="price" column="EXT_PRICE"/>
+               <!--金额-->
+               <result property="amount" column="EXT_AMOUNT"/>
+               <!--要求-->
+               <result property="productRequest" column="PRODUCT_REQUEST"/>
+               <!--排序好-->
+               <result property="orderNo" column="EXT_ORDER_NO"/>
+               <!--附件和生产厂家多对一-->
+               <association property="factory" javaType="com.tinysoft.cn.domain.Factory">
+                   <id property="id" column="EXT_FACTORY_ID"/>
+                   <result property="fullName" column="EXT_FULL_NAME"/>
+                   <result property="factoryName" column="EXT_FACTORY_NAME"/>
+                   <result property="contacts" column="EXT_CONTACTS"/>
+               </association>
+           </collection>
+       </collection>
+   </resultMap>
+
+    <!--合同 货物 附件 进行关联查询 合同信息，货物信息 附件信息全部查询出来-->
+    <select id="view"  parameterType="string"   resultMap="ContractVORM">
+
+              select
+      c.contract_id,c.offeror,c.contract_no,c.signing_date,c.input_by,c.check_by,c.inspector,c.total_amount,c.import_num,c.crequest,c.custom_name,c.delivery_period,c.ship_time,c.trade_terms,c.remark,c.print_style,c.old_state,c.state,c.out_state,c.create_by,c.create_dept,c.create_time,
+
+       t.contract_product_id,
+        t.product_no,t.product_image,t.product_desc,t.cnumber,t.out_number,t.loading_rate,t.box_num,t.packing_unit,t.price,t.amount,t.finished,t.exts,t.order_no,
+        t.factory_id,t.full_name,t.factory_name,t.contacts,t.phone,
+
+        t.ext_cproduct_id,
+        t.ctype,t.ext_product_no,t.ext_product_image,t.ext_product_desc,t.ext_cnumber,t.ext_packing_unit,t.ext_price,t.ext_amount,t.product_request,
+        t.ext_order_no,
+        t.ext_factory_id,t.ext_full_name,t.ext_factory_name,t.ext_contacts,t.ext_phone
+
+from
+(
+      select
+          contract_id,offeror,contract_no,signing_date,input_by,check_by,inspector,total_amount,import_num,crequest,custom_name,delivery_period,ship_time,trade_terms,remark,print_style,old_state,state,out_state,create_by,create_dept,create_time
+       from contract_c
+) c
+left join
+(
+       select
+              cp.contract_product_id,cp.contract_id,
+              cp.product_no,cp.product_image,cp.product_desc,cp.cnumber,cp.out_number,cp.loading_rate,cp.box_num,cp.packing_unit,cp.price,cp.amount,cp.finished,cp.exts,cp.order_no,
+              cp.factory_id,cp.full_name,cp.factory_name,cp.contacts,cp.phone,
+
+              ext.ext_cproduct_id,
+              ext.ctype,ext.product_no as ext_product_no,ext.product_image as ext_product_image,ext.product_desc as ext_product_desc,
+              ext.cnumber as ext_cnumber,ext.packing_unit as ext_packing_unit,ext.price as ext_price,ext.amount as ext_amount,
+              ext.product_request,ext.order_no as ext_order_no,
+              ext.factory_id as ext_factory_id,ext.full_name as ext_full_name,ext.factory_name as ext_factory_name,ext.contacts as ext_contacts,ext.phone as ext_phone
+
+        from
+        (
+            select
+              cp.contract_product_id,cp.contract_id,
+              cp.product_no,cp.product_image,cp.product_desc,cp.cnumber,cp.out_number,cp.loading_rate,cp.box_num,cp.packing_unit,cp.price,cp.amount,cp.finished,cp.exts,cp.order_no,
+              f.factory_id,f.full_name,f.factory_name,f.contacts,f.phone
+            from
+            (select
+            contract_product_id,contract_id,factory_id,
+            product_no,product_image,product_desc,cnumber,out_number,loading_rate,box_num,packing_unit,price,amount,finished,exts,order_no
+             from contract_product_c) cp
+            left join
+            (select factory_id,full_name,factory_name,contacts,phone from factory_c) f
+            on cp.factory_id=f.factory_id
+        ) cp
+        left join
+        (
+            select
+              ext.ext_cproduct_id,ext.contract_product_id,
+              ext.ctype,ext.product_no,ext.product_image,ext.product_desc,ext.cnumber,ext.packing_unit,ext.price,ext.amount,ext.product_request,ext.order_no,
+              f.factory_id,f.full_name,f.factory_name,f.contacts,f.phone
+            from
+            (
+            select
+                ext_cproduct_id,contract_product_id,factory_id,
+                ctype,product_no,product_image,product_desc,cnumber,packing_unit,price,amount,product_request,order_no
+             from ext_cproduct_c
+            ) ext
+            left join
+            (select factory_id,full_name,factory_name,contacts,phone from factory_c) f
+            on ext.factory_id=f.factory_id
+        ) ext
+        on cp.contract_product_id=ext.contract_product_id
+) t
+on c.contract_id=t.contract_id
+
+where c.contract_id=#{contractId}
+    </select>
+
+    <!--先从里面查，从里到外的过程-->
+    <select id="find" parameterType="map" resultMap="ContractRM">
+        select  (select count(*) from Contract_Product_c where contract_id=c.contract_id) as cpnum,
+        ( select count(*) from ext_cproduct_c where contract_product_id in
+         (select contract_product_id from contract_product_c  where contract_id =c.contract_id)
+        )as extnum,
+        (
+          nvl((select sum(cnumber*price) as cptotal from contract_product_c where contract_id = c.contract_id),0)
+          + nvl((select sum(cnumber*price) as exttotal from ext_cproduct_c where contract_product_id in
+                                (select contract_product_id from contract_product_c where c.contract_id =contract_id)),0)
+        )as total_amount,
+        c.CONTRACT_ID,c.OFFEROR,c.CONTRACT_NO,c.SIGNING_DATE,c.INPUT_BY,c.CHECK_BY,c.INSPECTOR,c.IMPORT_NUM,c.CREQUEST,c.CUSTOM_NAME,c.DELIVERY_PERIOD,c.SHIP_TIME,c.TRADE_TERMS,c.REMARK,c.PRINT_STYLE,c.OLD_STATE,c.STATE,c.OUT_STATE
+
+from contract_c c
+
+where 1=1 <if test="state != null"> and c.STATE = #{state}</if>
+    </select>
+
+    <insert id="insert" parameterType="com.tinysoft.cn.domain.Contract">
+           insert into contract_c
+		(CONTRACT_ID,
+		OFFEROR,
+		CONTRACT_NO,
+		SIGNING_DATE,
+		INPUT_BY,
+		CHECK_BY,
+		INSPECTOR,
+		TOTAL_AMOUNT,
+		IMPORT_NUM,
+		CREQUEST,
+		CUSTOM_NAME,
+		DELIVERY_PERIOD,
+		SHIP_TIME,
+		TRADE_TERMS,
+		REMARK,
+		PRINT_STYLE,
+		OLD_STATE,
+		STATE,
+		OUT_STATE,
+		CREATE_BY,
+		CREATE_DEPT,
+		CREATE_TIME)
+		values
+		(
+			#{id},
+			#{offeror, jdbcType=VARCHAR},
+			#{contractNo, jdbcType=VARCHAR},
+			#{signingDate, jdbcType=TIMESTAMP},
+			#{inputBy, jdbcType=VARCHAR},
+			#{checkBy, jdbcType=VARCHAR},
+			#{inspector, jdbcType=VARCHAR},
+			#{totalAmount, jdbcType=DOUBLE},
+			#{importNum, jdbcType=INTEGER},
+			#{crequest, jdbcType=VARCHAR},
+			#{customName, jdbcType=VARCHAR},
+			#{deliveryPeriod, jdbcType=TIMESTAMP},
+			#{shipTime, jdbcType=TIMESTAMP},
+			#{tradeTerms, jdbcType=VARCHAR},
+			#{remark, jdbcType=VARCHAR},
+			#{printStyle, jdbcType=CHAR},
+			#{oldState, jdbcType=INTEGER},
+			#{state, jdbcType=INTEGER},
+			#{outState, jdbcType=INTEGER},
+			#{createBy, jdbcType=VARCHAR},
+			#{createDept, jdbcType=VARCHAR},
+			#{createTime, jdbcType=TIMESTAMP}
+		)
+
+    </insert>
+
+    <select id="get" parameterType="string" resultMap="ContractRM">
+          select * from contract_c where contract_id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.tinysoft.cn.domain.Contract">
+         update contract_c
+          <set>
+              <if test="offeror != null">OFFEROR=#{offeror},</if>
+              <if test="contractNo != null">CONTRACT_NO=#{contractNo},</if>
+              <if test="signingDate != null">SIGNING_DATE=#{signingDate},</if>
+              <if test="inputBy != null">INPUT_BY=#{inputBy},</if>
+              <if test="checkBy != null">CHECK_BY=#{checkBy},</if>
+              <if test="inspector != null">INSPECTOR=#{inspector},</if>
+              <if test="totalAmount != null">TOTAL_AMOUNT=#{totalAmount},</if>
+              <if test="importNum != null">IMPORT_NUM=#{importNum},</if>
+              <if test="crequest != null">CREQUEST=#{crequest},</if>
+              <if test="customName != null">CUSTOM_NAME=#{customName},</if>
+              <if test="deliveryPeriod != null">DELIVERY_PERIOD=#{deliveryPeriod},</if>
+              <if test="shipTime != null">SHIP_TIME=#{shipTime},</if>
+              <if test="tradeTerms != null">TRADE_TERMS=#{tradeTerms},</if>
+              <if test="remark != null">REMARK=#{remark},</if>
+              <if test="printStyle != null">PRINT_STYLE=#{printStyle},</if>
+              <if test="oldState != null">OLD_STATE=#{oldState},</if>
+              <if test="state != null">STATE=#{state},</if>
+              <if test="outState != null">OUT_STATE=#{outState},</if>
+          </set>
+        where contract_id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="string">
+
+         delete from contract_c
+         where contract_id in
+         <foreach collection="array" item="id" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+    </delete>
+
+    <update id="updateState" parameterType="map">
+
+        update contract_c set state=#{state}
+
+         where contract_id IN
+         <foreach collection="ids" item="id" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+
+    </update>
+
+    <delete id="deleteExtProductByContractId" parameterType="string">
+        delete from Ext_Cproduct_c
+              where contract_product_id in
+              (select contract_product_id from contract_product_c
+               where contract_id in
+               <foreach collection="array" item="id" open="(" close=")" separator=",">
+                   #{id}
+               </foreach>
+              )
+    </delete>
+</mapper>
